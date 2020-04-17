@@ -2,9 +2,9 @@
 
 **第一次握手   客户端 =》 服务端**
 
-> ![image-20200408102552374](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408102552374.png)
+> ![image-20200408102552374](.\图片\image-20200408102552374.png)
 >
-> ![image-20200408095624422](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408095624422.png)
+> ![image-20200408095624422](.\图片\image-20200408095624422.png)
 >
 > 标志位只有SYN，表示连接请求
 >
@@ -12,9 +12,9 @@
 
 **第二次握手   服务端 =》 客户端**
 
-> ![image-20200408102643589](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408102643589.png)
+> ![image-20200408102643589](.\图片\image-20200408102643589.png)
 >
-> ![image-20200408095958399](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408095958399.png)
+> ![image-20200408095958399](.\图片\image-20200408095958399.png)
 >
 > 标志位SYN置1 。这里需要用到确认号所以ACK置1
 >
@@ -24,9 +24,9 @@
 
 **第三次握手   客户端 =》 服务端**
 
-> ![image-20200408102700269](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408102700269.png)
+> ![image-20200408102700269](.\图片\image-20200408102700269.png)
 >
-> ![image-20200408100417836](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408100417836.png)
+> ![image-20200408100417836](.\图片\image-20200408100417836.png)
 >
 > 请求连接收请求接收都结束了，所以不再设SYN。这里只有ACK用来开启确认号
 >
@@ -40,9 +40,9 @@
 
 ##### 发送GET请求
 
-> ![image-20200408102721036](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408102721036.png)
+> ![image-20200408102721036](.\图片\image-20200408102721036.png)
 >
-> ![image-20200408101458776](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408101458776.png)
+> ![image-20200408101458776](.\图片\image-20200408101458776.png)
 >
 > 确认号依然为1，服务端还没发数据
 >
@@ -52,7 +52,7 @@
 >
 > Header Length：TCP头部为20byte
 >
-> ![image-20200408102045807](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408102045807.png)
+> ![image-20200408102045807](.\图片\image-20200408102045807.png)
 >
 > IP头部为20字节
 >
@@ -64,9 +64,9 @@
 
 > 首先发送一个确认报文,表示我已经收到你的请求了
 >
-> ![image-20200408103244276](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408103244276.png)
+> ![image-20200408103244276](.\图片\image-20200408103244276.png)
 >
-> ![image-20200408103357453](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408103357453.png)
+> ![image-20200408103357453](.\图片\image-20200408103357453.png)
 >
 > 可以看到这里的确认号为1269, 表示期待收到的下一个字节号为1269 .客户端看到这个1269就知道它发的1~1268号数据服务端都收到了
 >
@@ -74,6 +74,6 @@
 >
 > .....
 >
-> ![image-20200408104147516](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408104147516.png)
+> ![image-20200408104147516](.\图片\image-20200408104147516.png)
 >
-> ![image-20200408104337972](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408104337972.png)
+> ![image-20200408104337972](.\图片\image-20200408104337972.png)
