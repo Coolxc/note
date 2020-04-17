@@ -1,0 +1,79 @@
+### 建立连接
+
+**第一次握手   客户端 =》 服务端**
+
+> ![image-20200408102552374](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408102552374.png)
+>
+> ![image-20200408095624422](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408095624422.png)
+>
+> 标志位只有SYN，表示连接请求
+>
+> 帧序号为978。seq=0
+
+**第二次握手   服务端 =》 客户端**
+
+> ![image-20200408102643589](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408102643589.png)
+>
+> ![image-20200408095958399](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408095958399.png)
+>
+> 标志位SYN置1 。这里需要用到确认号所以ACK置1
+>
+> 确认序号为期待下一次收到的序号，这里为1，表示你发的0号我已经收到了
+>
+> 这个确认号是对于978号帧的（978号帧的第一个字节编号为0），RTT（往返时延）为0.0096s
+
+**第三次握手   客户端 =》 服务端**
+
+> ![image-20200408102700269](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408102700269.png)
+>
+> ![image-20200408100417836](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408100417836.png)
+>
+> 请求连接收请求接收都结束了，所以不再设SYN。这里只有ACK用来开启确认号
+>
+> 第二次握手服务端发送的seq为0所以这里确认号为1。
+
+**通过确认号，握手结束后客户端和服务端就相互确认了对方能收到他的消息**
+
+### HTTP请求与相响应
+
+连接建立后就能发送HTTP请求了
+
+##### 发送GET请求
+
+> ![image-20200408102721036](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408102721036.png)
+>
+> ![image-20200408101458776](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408101458776.png)
+>
+> 确认号依然为1，服务端还没发数据
+>
+> 第一行：这是991号帧，总大小为1322个字节
+>
+> 标志位有一个PSH位表示接收方要将这个报文直接接收不用再接受缓存中排队
+>
+> Header Length：TCP头部为20byte
+>
+> ![image-20200408102045807](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408102045807.png)
+>
+> IP头部为20字节
+>
+> Next sequence number为1269，这是因为当前序号为1 ；数据帧总长度为1322byte。去掉链路层的帧头部14字节，再去掉网络层的IP头部20字节，再去掉TCP头部20字节。这时就只剩TCP的数据部分长度了，为1268字节，说明这个帧的数据部分字节编号为1~1268。那么计算出它发送的数据的下一个字节序号就为1269。当然对方回复的确认号也应该是1269
+>
+> 在下方有一个超文本传输协议，就是我们发送的GET请求
+
+##### 服务端响应请求
+
+> 首先发送一个确认报文,表示我已经收到你的请求了
+>
+> ![image-20200408103244276](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408103244276.png)
+>
+> ![image-20200408103357453](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408103357453.png)
+>
+> 可以看到这里的确认号为1269, 表示期待收到的下一个字节号为1269 .客户端看到这个1269就知道它发的1~1268号数据服务端都收到了
+>
+> 然后服务端就开始分片发送数据
+>
+> .....
+>
+> ![image-20200408104147516](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408104147516.png)
+>
+> ![image-20200408104337972](C:\Users\Administrator\Desktop\oooooo\计算机网络\图片\image-20200408104337972.png)
