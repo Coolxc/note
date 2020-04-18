@@ -170,25 +170,25 @@ select  * from Ñ§Éú   xh=21 where id=5 for update; #Ëø¶¨Ñ§Éú±íÖÐµÄID=5µÄÐÐ ²»ÔÊÐ
 >
 > **extra:** using temporary(´´½¨ÁÙÊ±±í£¬±ØÐëÓÅ»¯)
 >
-> ?           using filesort (ÅÅÐòÃ»ÓÐÓÃµ½Ë÷Òý£¬ÎÄ¼þÀàÐÍÅÅÐòÐëÓÅ»¯)
+> > using filesort (ÅÅÐòÃ»ÓÐÓÃµ½Ë÷Òý£¬ÎÄ¼þÀàÐÍÅÅÐòÐëÓÅ»¯)
+>>
+> > using index  £¨¸²¸ÇË÷Òý£©
+
+?       
+
+**ÓÅ»¯SQLÓï¾äµÄ²½Öè£º**
+
+> 1£º¹Û²ìÖÁÉÙÅÜÒ»Ìì£¬¿´¿´Éú²úµÄÂýSQLÇé¿ö¡£
 >
-> ?           using index  £¨¸²¸ÇË÷Òý£©
+> 2£º¿ªÆôÂý²éÑ¯ÈÕÖ¾£¬¡®ÉèÖÃ·§Öµ¡¯£¬±ÈÈç³¬¹ý5ÃëÖÓ¾ÍÊÇÂýSQL£¬²¢°ÑËü×¥×¡È¡³öÀ´·ÖÎö¡£
+>
+> 3£ºexplain + ÂýSQL ·ÖÎö
+>
+> 4£ºshow profile
+>
+> 5£ºÔËÎ¬¾­Àíor DBA ½øÐÐ·þÎñÆ÷²ÎÊýµ÷ÓÅ¡£
 
 
-
-?           
-
-ÓÅ»¯SQLÓï¾äµÄ²½Öè£º
-
-?      1£º¹Û²ìÖÁÉÙÅÜÒ»Ìì£¬¿´¿´Éú²úµÄÂýSQLÇé¿ö¡£
-
-?      2£º¿ªÆôÂý²éÑ¯ÈÕÖ¾£¬¡®ÉèÖÃ·§Öµ¡¯£¬±ÈÈç³¬¹ý5ÃëÖÓ¾ÍÊÇÂýSQL£¬²¢°ÑËü×¥×¡È¡³öÀ´·ÖÎö¡£
-
-?      3£ºexplain + ÂýSQL ·ÖÎö
-
-?      4£ºshow profile
-
-?      5£ºÔËÎ¬¾­Àíor DBA ½øÐÐ·þÎñÆ÷²ÎÊýµ÷ÓÅ¡£
 
 **×Ü½á£º** 
 
@@ -196,11 +196,11 @@ select  * from Ñ§Éú   xh=21 where id=5 for update; #Ëø¶¨Ñ§Éú±íÖÐµÄID=5µÄÐÐ ²»ÔÊÐ
 >
 > explain +ÂýSQL·ÖÎö
 >
-> ?             show profile ²éÑ¯sqlÔÚmysql·þÎñÆ÷µÄÖ´ÐÐÏ¸½ÚºÍÉúÃüÖÜÆÚÇé¿ö
+> show profile ²éÑ¯sqlÔÚmysql·þÎñÆ÷µÄÖ´ÐÐÏ¸½ÚºÍÉúÃüÖÜÆÚÇé¿ö
 >
-> ?             SQL Êý¾Ý¿â·þÎñÆ÷µÄ²ÎÊýµ÷ÓÅ¡£
+> SQL Êý¾Ý¿â·þÎñÆ÷µÄ²ÎÊýµ÷ÓÅ¡£
 
-?             
+?       
 
 #### ÂýÈÕÖ¾²éÑ¯£º
 
