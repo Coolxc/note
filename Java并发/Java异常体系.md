@@ -48,7 +48,7 @@ Exception：
 > Exception in thread "MyThread-3" java.lang.RuntimeException
 > 	at CantCatchDirectly.run(CantCatchDirectly.java:4)
 > 	at java.base/java.lang.Thread.run(Thread.java:834)
-> 执行完毕
+> //程序执行完毕 正常退出
 > //可以看到只是输出了异常，并没有停止执行
 > ```
 >

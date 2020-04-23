@@ -15,27 +15,31 @@
 > > > 如果用Thread那么每执行一种任务就需要启动一个继承了Thread类并重写了run方法的thread。而如果用Runnable就可以使用一个Thread来启动不同的Runnable。线程池正式这样做的。
 > > >
 > > > Java不支持双继承
+> > >
+> > > Runnable可以实现多个相同的程序共享一个资源，而Thread也能够共享的原因是内部也是转型成了Runnable
 
 **思考题**
 
 > ```java
 > public class BothRunnableThread{
->     public static void main(String[] args){
->         new Thread(new Runnable(){
->             public void run(){  //实现Runnable接口的run方法
->                 System.out.println("come from Runnable");
->             }
->         }) {
->             @Override
->             public void run(){
->                 System.out.println("come from Thread");
->             }
->         }.start(); //重写Thread的run方法
->     }
+>  public static void main(String[] args){
+>      new Thread(new Runnable(){
+>          public void run(){  //实现Runnable接口的run方法
+>              System.out.println("come from Runnable");
+>          }
+>      }) {
+>          @Override
+>          public void run(){
+>              System.out.println("come from Thread");
+>          }
+>      }.start(); //重写Thread的run方法
+>  }
 > }
 > 
 > //结果是执行了Thread的run方法：come from Thread
 > ```
+>
+> 首先，如下面的代码，在Thread类中是调用Thread的run来执行任务的，最终
 >
 > 这里同时实现了Runnable的run和复写了Thread的run。
 >
@@ -44,13 +48,13 @@
 > ```java
 > @Override
 > public voidd run(){
->     if (target != null){ //target为传入Thread构造方法的Runnable参数
->         target.run();   //如果不为空则执行
->     }
+>  if (target != null){ //target为传入Thread构造方法的Runnable参数
+>      target.run();   //如果不为空则执行
+>  }
 > }
 > ```
 >
-> 这里我们是传入了Runnable的，target也被赋值了。但是我们**重写了Thread的run方法**，它的run已经不是这个判断语句了而是成了一个输出语句。。所以只输出了 come from Thread
+> 这里我们是传入了Runnable的所以最后调用的是Runnabel的run方法，target也被赋值了。但是我们**重写了Thread的run方法**，它的run已经不是这个判断语句了而是成了一个输出语句。。所以只输出了 come from Thread
 
 #### 典型的错误观点分析
 
@@ -60,7 +64,7 @@
 
 2. **通过Callable和FuterTask创建线程，也算是一种新建线程的方式** ❌
 
-> <img src="C:\Users\Administrator\Desktop\oooooo\Java_concurrent\图片\image-20200418151352996.png" alt="image-20200418151352996" style="zoom:80%;" />
+> <img src=".\图片\image-20200418151352996.png" alt="image-20200418151352996" style="zoom:80%;" />
 >
 > 不管怎样都离不开Runnanble和Thread
 
@@ -145,7 +149,7 @@ public voidd run(){
 >     public void run(){
 >         int num = 0;
 >         //如果收到interrupt请求那么退出循环。
->         //如果没有!Thread.currentThread().isInterrupted()这个条件那么就算有interrupt请求也不管用。。。所以是否中断是线程自身决定的
+>         //如果没有!Thread.currentThread().isInterrupted()这个条件那么就算有interrupt请求也不管用。。。所以由此可知是否中断是线程自身决定的
 >         while (!Thread.currentThread().isInterrupted() && num <= Integer.MAX_VALUE / 2){
 >             if (num % 10000 = 0){
 >                 System.out.pringln(num + "是10000的倍数")；
@@ -290,7 +294,7 @@ public class StopThreadInProduct implements Runnable{
     }
 
     /**
-     * 在catch后掉调用Thread.currentThread().interrupt()来恢复中断状态
+     * 在catch后掉调用Thread.currentThread().interrupt()来传递中断状态
      */
     private void reInMethod(){
         try {
