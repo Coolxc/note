@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: yang
+    password: 123456
+    url: jdbc:mysql://localhost/sell?characterEncoding=utf-8
+  jpa:
+    show-sql: true
+  jackson:
+    #不返回值为null的属性，便于前端处理
+    default-property-inclusion: non_null
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+server:
+  port: 5000
