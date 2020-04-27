@@ -58,6 +58,23 @@ volatile变量依然有工作内存的拷贝，但是由于它特殊的操作顺
 
 1. `boolean flag`或标记位或`int a= 3`这种一气呵成的操作：如果一个共享变量自始自终只被各个线程赋值，而没有其他的操作，那么就可以用volatile来代替synvhronized或代替原子变量。因为赋值**自身是有原子性**的，而volatile又保证了可见性，所以就足以保证线程安全。
 
+   > ```java
+   > volatile boolean shutdownRequested;
+   > 	public void shutdown() {
+   > 		shutdownRequested = true;
+   > 	}
+   > 
+   > 	public void doWork() {
+   > 		while (!shutdownRequested) {
+   > 		// 代码的业务逻辑
+   > 		}
+   > 	}
+   > ```
+   >
+   > 一旦一个线程执行了`shutdown()`方法，`shutdownRequested = true;`这个操作就一定能被其他线程立即看到，所以其他线程一定会及时的停止他们的业务。
+   >
+   > 如果没有volatile，那么可能shutdown后并没有来得及写回主存。那么其他线程读取的还是旧的false值，其他线程就会继续执行while直到读取到新的值。
+
 2. **触发器：**近朱者赤，一旦触发，预想中的所有操作都将完成
 
    > ```java
