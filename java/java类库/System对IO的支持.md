@@ -6,7 +6,7 @@
 
 标准输入（键盘）：`public static final InputStream in`
 
-原来一直使用的`System.out.print()`一直是属于IO操作的范畴。out是PrintSream类型的，所以`System.out.print()`就等于`PrintStream.print()`而PrintStream有一个print方法，并且print方法调用的String.valueOf()，而valueOf方法又调用了toString()。这也是为什么我们`System.out.print()`时调用的是对象的toString方法的原因了。
+原来一直使用的`System.out.print()`一直是属于IO操作的范畴。out是PrintStream类型的，所以`System.out.print()`就等于`PrintStream.print()`而PrintStream有一个print方法，并且print方法调用的String.valueOf()，而valueOf方法又调用了toString()。这也是为什么我们`System.out.print()`时调用的是对象的toString方法的原因了。
 
 ## 系统输出
 

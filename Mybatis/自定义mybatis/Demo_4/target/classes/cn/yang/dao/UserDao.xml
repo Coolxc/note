@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- namespace为dao接口的全限定类名-->
+<mapper namespace="cn.yang.dao.UserDao">
+    <!-- 配置查询所有，id为UserDao的方法名称，resultType表示将查询到的信息封装到User对象中-->
+    <select id="findAll" resultType="cn.yang.User">select * from user</select>
+</mapper>
