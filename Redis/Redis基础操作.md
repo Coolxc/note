@@ -24,7 +24,7 @@
 >
 > 图数据库：用来存放关系，如社交关系，广告推荐系统：Neo4j, InfoGrid
 >
-> ![image-20200409204942949](C:\Users\Administrator\Desktop\oooooo\Nosql\图片\image-20200409204942949.png)
+> ![image-20200409204942949](\图片\image-20200409204942949.png)
 
 ### Redis：Remote Dictionary Server（远程字典服务器）
 

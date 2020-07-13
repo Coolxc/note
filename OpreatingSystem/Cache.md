@@ -66,7 +66,7 @@ int sum_array_rows(int a[M][N]){
 
 **伪共享的非标准定义为：缓存系统中是以缓存行（cache line）为单位存储的，当多线程修改互相独立的变量时，如果这些变量共享同一个缓存行，就会无意中影响彼此的性能，这就是伪共享。**
 
-<img src="图片/image-20200705150328118.png" alt="image-20200705150328118" style="zoom:50%;" />
+<img src="../Java并发/图片/image-20200705150328118.png" alt="image-20200705150328118" style="zoom:50%;" />
 
 Core1想要操作X，Core2想要操作Y，但是这两个操作的变量都在同一个cache line中。两个线程改一次变量的值就会发送一次RFO，占用此缓存行的拥有权。
 
@@ -101,7 +101,7 @@ Cache块 != Cache line，下面是为了容易看懂把Cache line说成了Cache�
   - 2路组相联意味着Cache每组有2块，也就是被分为了8组
   - 那么主存的每组内的块数就是8块，每个组内的8块都单独直接映射到了cache的8组上
   - 那么主存被分为了2048/8=256组
-  - <img src="图片/image-20200705183250845.png" alt="image-20200705183250845" style="zoom:50%;" />
+  - <img src="../Java并发/图片/image-20200705183250845.png" alt="image-20200705183250845" style="zoom:50%;" />
   - 此时如主存中的第0组的第0块和第1组的第8块都会被直接映射到Cache中的第0组
 
 # 定位目标缓存行
@@ -116,7 +116,7 @@ So, How to look for blocks in the cache and determine whether or not a particcul
 
 So this is all cache memories are organized in the following way：
 
-<img src="图片/image-20200705203050763.png" alt="image-20200705203050763" style="zoom:50%;" />
+<img src="../Java并发/图片/image-20200705203050763.png" alt="image-20200705203050763" style="zoom:50%;" />
 
 - Cache size：一共S组，每组有E个cache line，每个cache line有B个字节
 - 每组内有两行那么就是2-way set associative，只有一个那么就是全相联
@@ -127,7 +127,7 @@ So this is all cache memories are organized in the following way：
 
 **What is the Direct-mapping：**
 
-<img src="图片/image-20200705221358340.png" alt="image-20200705221358340" style="zoom:50%;" />
+<img src="../Java并发/图片/image-20200705221358340.png" alt="image-20200705221358340" style="zoom:50%;" />
 
 - line size = 8 byte，查找一个4 byte的int类型的值
 - 假定逻辑地址中的tag位与cache line中的tag相等。**注：**
@@ -140,7 +140,7 @@ So this is all cache memories are organized in the following way：
 
 **DIrect-Mapped Cache Simulation**：
 
-<img src="图片/image-20200705223254719.png" alt="image-20200705223254719" style="zoom:50%;" />
+<img src="../Java并发/图片/image-20200705223254719.png" alt="image-20200705223254719" style="zoom:50%;" />
 
 - 这是一个1-way set associative(直接映射)模拟
 - 内存为16字节，地址为4位，一块/一行是2字节，cache共四组，每组一行
@@ -156,7 +156,7 @@ So this is all cache memories are organized in the following way：
 
 **What is the 2-way set associative：**
 
-<img src="图片/image-20200705230502708.png" alt="image-20200705230502708" style="zoom:50%;" />
+<img src="../Java并发/图片/image-20200705230502708.png" alt="image-20200705230502708" style="zoom:50%;" />
 
 - 每组两行，每块8字节
 - 根据索引位找到一组，根据tag为找到对应的行
@@ -164,7 +164,7 @@ So this is all cache memories are organized in the following way：
 
 **2-Way Set Associative Cache Simulation：**
 
-<img src="图片/image-20200705231556228.png" alt="image-20200705231556228" style="zoom:50%;" />
+<img src="../Java并发/图片/image-20200705231556228.png" alt="image-20200705231556228" style="zoom:50%;" />
 
 - 每组两行，一块2byte，通过比较tag位确定组内哪一行
 - read 0：index为0 =》第0组，valid bit都为0 =》从内存加载M[0-1]到cache并置tag为00。【miss】
@@ -201,7 +201,7 @@ So this is all cache memories are organized in the following way：
 
 # Cache Performance
 
-<img src="图片/image-20200706092406643.png" alt="image-20200706092406643" style="zoom:50%;" />
+<img src="../Java并发/图片/image-20200706092406643.png" alt="image-20200706092406643" style="zoom:50%;" />
 
 在寄存器下方就是核心私有的L1和L2，在向下就是核心共享的L3
 
